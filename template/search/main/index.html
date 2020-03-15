@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doodle</title>
+    <link rel="stylesheet" href="{% static 'search/main.css' %}">
+    <link rel="stylesheet" href="{% static 'search/doodle.css' %}">
+</head>
+<body>
+<div class="search-area">
+    <h1 class="doodle">
+        <span>D</span><span>O</span><span>O</span><span>D</span><span>L</span><span>E</span>
+    </h1>
+    <p>Better then google</p>
+    <form action="/doodle/result/" method="post">
+        {% csrf_token %}
+        <input type="text" name="query">
+        <button type="submit">Search</button>
+    </form>
+</div>
+</body>
+</html>

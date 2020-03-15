@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doodle</title>
+    <link rel="stylesheet" href="{% static 'search/result.css' %}">
+    <link rel="stylesheet" href="{% static 'search/doodle.css' %}">
+</head>
+<body>
+<div class="search-area">
+    <h1 class="doodle">
+        <span>D</span><span>O</span><span>O</span><span>D</span><span>L</span><span>E</span>
+    </h1>
+    <form action="/doodle/result/" method="post">
+        {% csrf_token %}
+        <input type="text" name="query">
+        <button type="submit">Search</button>
+    </form>
+</div>
+{% for k, v in result.items %}
+    <div class="search-result">
+        <h2><a href="{{ k }}">{{ k }}</a></h2>
+        {% for t in v.title %}
+            <h4>
+                {{ t }}
+            </h4>
+        {% endfor %}
+        {% for d in v.description %}
+            <p>
+                {{ d }}
+            </p>
+        {% endfor %}
+    </div>
+{% endfor %}
+</body>
+</html>
